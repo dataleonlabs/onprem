@@ -15,7 +15,7 @@ Dataleon helps to automate business workflows across cloud and on-premise apps p
 You have the following dependencies to run docker image:
 -   [Docker installation](https://github.com/dataleonlabs/onprem/wiki/1.-Docker-installation) (Dataleon Registry)
 -   [Docker Compose](https://github.com/dataleonlabs/onprem/wiki/2.-Docker-Compose) (Install Docker Compose and use our docker compose yaml)
--   [Nginx](https://github.com/dataleonlabs/onprem/wiki/3.-Nginx) (Recommended http serber)
+-   [Nginx](https://github.com/dataleonlabs/onprem/wiki/3.-Nginx) (Recommended http server)
 -   [Redis configuration](https://github.com/dataleonlabs/onprem/wiki/4.-Redis-configuration) (Data local storage configuration)
 
 ## Opening issues
