@@ -5,14 +5,19 @@ Toolbox to use the Dataleon services on onpremise with Docker.
 
 Dataleon helps to automate business workflows across cloud and on-premise apps providing employees with prompt communication and building in teams sophisticated collaboration.
 
+## Pre-requis
+You have the following dependencies to run docker image:
+-   unbuntu version ~18.04.2
+-   docker version >=20.10.2
+-   docker-compose version 1.26.0
+-   nginx version: >= nginx/1.14.0 (Ubuntu)
 
 ## Installations
 You have the following dependencies to run docker image:
--   [Docker installation](http://stackoverflow.com/questions/tagged/onprem-vison)
--   [Downdload and install image](https://join.slack.com/t/onpremcommunity/shared_invite/enQtOTA2NTcxNjc1OTI2LTA3YmNjMWRhY2E1NjdkODE2MjU4ZTcxZmU0ZmYyMzkyMDliYjM3Nzk4YzI1NTEzYjA1MjYxNWJlNGFlMjIzMDY) (Channel community)
--   [Use docker-compose.yml](https://github.com/youngapp/onprem) (Bug reports, feature requests, contributions)
--   [Nginx](https://twitter.com/youngapp_pf) (Get the news fast)
--   [Redis configuration](https://www.youtube.com/channel/UCPY1PeAXPQIgo29e4Z9u5cA) (Learn from Video Tutorials)
+-   [Docker installation](https://github.com/dataleonlabs/onprem/wiki/1.-Docker-installation) ( Dataleon Registry)
+-   [Docker Compose](https://github.com/dataleonlabs/onprem/wiki/2.-Docker-Compose) (Install Docker Compose and use our docker compose)
+-   [Nginx](https://github.com/dataleonlabs/onprem/wiki/3.-Nginx) (Recoomanded http serber)
+-   [Redis configuration](https://github.com/dataleonlabs/onprem/wiki/4.-Redis-configuration) (Data local storage configuration)
 
 ## Opening issues
 
