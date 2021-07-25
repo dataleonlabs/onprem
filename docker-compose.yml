@@ -1,0 +1,55 @@
+version: "3.7"  # optional since v1.27.0
+services:
+  redis:
+    image: bitnami/redis:6.2
+    restart: always
+    tty: true
+    ports:
+        - "6379:6379"
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    volumes: 
+      - /<PATH-REDIS>/data:/bitnami/redis/data
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 1g
+  inference:
+    image: <ONPREM-IMAGE>
+    restart: always
+    ports:
+      - "6000:80"
+    links:
+      - redis:redis
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - RQ_REDIS_URL=redis://redis:6379/0
+      - FLASK_APP=application:app
+      - ENV=prod
+    depends_on:
+      - worker
+      - redis
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 8g
+  worker:
+    image: <ONPREM-IMAGE>
+    restart: always
+    command: "rq worker"
+    environment:
+        - NVIDIA_VISIBLE_DEVICES=all
+        - RQ_REDIS_URL=redis://redis:6379/0
+        - FLASK_APP=application:app
+        - ENV=prod
+    depends_on:
+      - redis
+    links:
+      - redis:redis
+    deploy:
+      resources:
+        limits:
+          cpus: '0.4'
+          memory: 3g
