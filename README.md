@@ -5,8 +5,7 @@ Toolbox to use the Dataleon services on onpremise with Docker.
 
 Dataleon helps to automate business workflows across cloud and on-premise apps providing employees with prompt communication and building in teams sophisticated collaboration.
 
-## Pre-requis
-You have the following dependencies to run docker image:
+## Requirements
 -   unbuntu version ~18.04.2
 -   docker version >=20.10.2
 -   docker-compose version 1.26.0
