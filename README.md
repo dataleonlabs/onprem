@@ -25,7 +25,6 @@ Before opening a new issue, please go through [existing issues](https://github.c
 to find the solution right away if your problem was solved before.
 
 Attach the following details if appropriate:
-
 -   SDK
 -   Python 3.8
 -   Environment and OS
