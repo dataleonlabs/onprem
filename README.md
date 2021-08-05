@@ -9,14 +9,11 @@ Dataleon helps to automate business workflows across cloud and on-premise apps p
 -   unbuntu version ~18.04.2
 -   docker version >=20.10.2
 -   docker-compose version 1.26.0
--   nginx version: >= nginx/1.14.0 (Ubuntu)
 
 ## Installations
 You have the following dependencies to run docker image:
 -   [Docker installation](https://github.com/dataleonlabs/onprem/wiki/1.-Docker-installation) (Dataleon Registry)
 -   [Docker Compose](https://github.com/dataleonlabs/onprem/wiki/2.-Docker-Compose) (Install Docker Compose and use our docker compose yaml)
--   [Nginx](https://github.com/dataleonlabs/onprem/wiki/3.-Nginx) (Recommended http server)
--   [Redis configuration](https://github.com/dataleonlabs/onprem/wiki/4.-Redis-configuration) (Data local storage configuration)
 
 ## Opening issues
 
