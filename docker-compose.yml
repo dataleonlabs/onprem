@@ -1,55 +1,44 @@
 version: "3.7"  # optional since v1.27.0
 services:
-  redis:
-    image: bitnami/redis:6.2
+  rabbitmq:
+    image: rabbitmq:3.9-management
     restart: always
     tty: true
     ports:
-        - "6379:6379"
-    environment:
-      - ALLOW_EMPTY_PASSWORD=yes
-    volumes: 
-      - /<PATH-REDIS>/data:/bitnami/redis/data
-    deploy:
-      resources:
-        limits:
-          cpus: '0.1'
-          memory: 1g
+      - 5672:5672
+      - 15672:15672
+
   inference:
-    image: <ONPREM-IMAGE>
+    image: <IMAGE-ID>
     restart: always
+    command: python application.py
     ports:
       - "6000:80"
     links:
-      - redis:redis
+      - rabbitmq:rabbitmq
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
-      - RQ_REDIS_URL=redis://redis:6379/0
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/%2F  
+      - FLASK_APP=application:app
+      - ENV=prod
+    volumes:
+      - /var/data:/usr/src/app/data
+    depends_on:
+      - rabbitmq
+
+  worker:
+    image: <IMAGE-ID>
+    restart: always
+    command: python worker.py
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672/%2F
       - FLASK_APP=application:app
       - ENV=prod
     depends_on:
-      - worker
-      - redis
-    deploy:
-      resources:
-        limits:
-          cpus: '0.5'
-          memory: 8g
-  worker:
-    image: <ONPREM-IMAGE>
-    restart: always
-    command: "rq worker"
-    environment:
-        - NVIDIA_VISIBLE_DEVICES=all
-        - RQ_REDIS_URL=redis://redis:6379/0
-        - FLASK_APP=application:app
-        - ENV=prod
-    depends_on:
-      - redis
+      - rabbitmq
+      - inference
     links:
-      - redis:redis
-    deploy:
-      resources:
-        limits:
-          cpus: '0.4'
-          memory: 3g
+      - rabbitmq:rabbitmq
+    volumes:
+      - /var/data:/usr/src/app/data
